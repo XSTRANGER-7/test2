@@ -9,6 +9,10 @@ const HomePage = () => {
   const webcamRef = useRef(null);
   const navigate = useNavigate();
 
+  const videoConstraints = {
+    facingMode: 'environment', // 'environment' to access back camera
+  };
+
   const capture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
     localStorage.setItem('capturedImage', imageSrc);
@@ -31,6 +35,7 @@ const HomePage = () => {
                   audio={false}
                   ref={webcamRef}
                   screenshotFormat="image/jpeg"
+                  videoConstraints={videoConstraints} // Specify video constraints here
                   style={{ width: '100%', height: '100%' }}
                 />
               )}
